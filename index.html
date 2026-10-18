@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LMSPro 1.0 — Laboratory Management System | Implemented by DELAF</title>
+<style>
+:root{--bg:#f6fafb;--surf:#fff;--tx:#0d2530;--mut:#52707c;--pri:#0a8f8f;--pri2:#0b5d7a;--acc:#f4a300;--bd:#dbe7ea;--hero:linear-gradient(135deg,#0b5d7a,#0a8f8f)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#08171d;--surf:#0f2630;--tx:#e6f3f5;--mut:#8fb0ba;--bd:#1d3b47;--pri:#2cc5c5}}
+:root[data-theme="dark"]{--bg:#08171d;--surf:#0f2630;--tx:#e6f3f5;--mut:#8fb0ba;--bd:#1d3b47;--pri:#2cc5c5}
+*{box-sizing:border-box}html{scroll-behavior:smooth;height:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+.w{max-width:1080px;margin:auto;padding:0 20px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surf);border-bottom:1px solid var(--bd)}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:58px}
+.logo{font-weight:800;font-size:1.2rem;color:var(--pri)}.logo b{color:var(--acc)}
+nav a.l{color:var(--mut);text-decoration:none;margin-left:18px;font-size:.9rem}
+@media(max-width:640px){nav a.l{display:none}}
+.btn{display:inline-block;padding:12px 24px;border-radius:10px;background:var(--acc);color:#1b1300;font-weight:700;text-decoration:none}
+.btn.o{background:transparent;color:#fff;border:2px solid #fff;margin-left:10px}
+header.h{background:var(--hero);color:#fff;padding:72px 0 60px}
+header h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.1;margin:0 0 14px}
+header p{max-width:620px;font-size:1.1rem;opacity:.92}
+.tag{display:inline-block;background:rgba(255,255,255,.18);padding:4px 12px;border-radius:99px;font-size:.8rem;margin-bottom:16px}
+.mock{margin-top:36px;background:var(--surf);color:var(--tx);border-radius:14px;padding:16px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.kp div{background:var(--bg);border-radius:10px;padding:12px}.kp small{color:var(--mut)}.kp strong{display:block;font-size:1.3rem;color:var(--pri)}
+.bars{display:flex;align-items:flex-end;gap:8px;height:90px;margin-top:14px}
+.bars i{flex:1;background:var(--pri);border-radius:5px 5px 0 0;opacity:.85}
+section{padding:60px 0}h2{font-size:1.8rem;margin:0 0 8px}.sub{color:var(--mut);margin:0 0 32px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.c{background:var(--surf);border:1px solid var(--bd);border-radius:14px;padding:20px}
+.c .i{font-size:1.6rem}.c h3{margin:8px 0 4px;font-size:1.05rem}.c p{margin:0;color:var(--mut);font-size:.92rem}
+.alt{background:var(--surf);border-block:1px solid var(--bd)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;counter-reset:s}
+.steps div{counter-increment:s;padding:16px;border-left:3px solid var(--pri)}
+.steps div:before{content:counter(s);font-weight:800;color:var(--acc);font-size:1.4rem;display:block}
+.pill{display:inline-block;background:var(--bg);border:1px solid var(--bd);padding:6px 14px;border-radius:99px;margin:4px;font-size:.88rem}
+.d{background:var(--hero);color:#fff;border-radius:18px;padding:36px}
+.d h2{color:#fff}.d p{opacity:.92}
+footer{padding:30px 0;text-align:center;color:var(--mut);font-size:.85rem}
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;align-items:stretch}.pc{background:var(--surf);border:1px solid var(--bd);border-radius:16px;padding:24px;display:flex;flex-direction:column}.pc.f{border:2px solid var(--acc);position:relative}.pc.f:before{content:"Most popular";position:absolute;top:-12px;left:20px;background:var(--acc);color:#1b1300;font-size:.75rem;font-weight:700;padding:2px 10px;border-radius:99px}.pc h3{margin:0;font-size:1.2rem}.pc .p{font-size:2.2rem;font-weight:800;color:var(--pri);margin:8px 0}.pc ul{padding-left:18px;margin:0 0 18px;color:var(--mut);font-size:.92rem;flex:1}.pc .btn{text-align:center}.fm{max-width:640px;margin:auto;text-align:left;display:grid;gap:12px}.fm label{font-size:.85rem;color:var(--mut);display:grid;gap:4px}.fm input,.fm select,.fm textarea{font:inherit;padding:11px 12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);width:100%}.fm button{border:0;cursor:pointer;font:inherit;font-weight:700}.ct{margin-top:22px}.ct a{color:var(--pri);font-weight:700;text-decoration:none;margin:0 8px}
+</style></head><body>
+<nav><div class="w"><div class="logo">LMS<b>Pro</b> 1.0</div><div><a class="l" href="#features">Features</a><a class="l" href="#flow">Workflow</a><a class="l" href="#pricing">Pricing</a><a class="l" href="#delaf">About DELAF</a><a class="l" href="#contact">Request Demo</a></div></div></nav>
+<header class="h"><div class="w">
+<span class="tag">Laboratory Management System</span>
+<h1>Run your laboratory with accuracy, speed and full financial clarity.</h1>
+<p>From patient registration to printed results and profit reports, LMSPro 1.0 brings every laboratory process into one secure, easy-to-use platform.</p>
+<a class="btn" href="#contact">Request a Demo</a><a class="btn o" href="#features">Explore Features</a>
+<div class="mock"><div class="kp"><div><small>Today's Collections</small><strong>₦ 482,500</strong></div><div><small>Tests Ordered</small><strong>126</strong></div><div><small>Pending Results</small><strong>18</strong></div><div><small>Net Profit (Month)</small><strong>₦ 3.4M</strong></div></div>
+<div class="bars"><i style="height:40%"></i><i style="height:62%"></i><i style="height:50%"></i><i style="height:80%"></i><i style="height:68%"></i><i style="height:92%"></i><i style="height:75%"></i></div>
+<small style="color:var(--mut)">Sample dashboard preview</small></div>
+</div></header>
+
+<section id="features"><div class="w"><h2>Everything a modern laboratory needs</h2><p class="sub">Built around real laboratory workflows.</p>
+<div class="g">
+<div class="c"><div class="i">🧑‍⚕️</div><h3>Patient Registration</h3><p>Fast registration, searchable patient records and complete patient lists.</p></div>
+<div class="c"><div class="i">🧪</div><h3>Test, Scan &amp; X-ray Orders</h3><p>Order laboratory tests, scans, x-rays and other investigations in one request.</p></div>
+<div class="c"><div class="i">🏥</div><h3>Departments &amp; Access Control</h3><p>Tests belong to departments; staff see only their own department after login.</p></div>
+<div class="c"><div class="i">💳</div><h3>Paystack Payments</h3><p>Online card, transfer and USSD payments, plus all collection channels in one view.</p></div>
+<div class="c"><div class="i">💳</div><h3>Chip Card Integration</h3><p>Patient chip cards for quick identification and retrieval of records.</p></div>
+<div class="c"><div class="i">🔬</div><h3>Analyser Integration</h3><p>Connects to your existing laboratory analysers so results flow in automatically (Professional and Enterprise).</p></div>
+<div class="c"><div class="i">📄</div><h3>Result Sheets &amp; History</h3><p>Professional result sheets for every test, with printing of previous results.</p></div>
+<div class="c"><div class="i">⚠️</div><h3>Unpaid Result Flag</h3><p>A bold UNPAID flag on result-entry pages protects your revenue.</p></div>
+<div class="c"><div class="i">📊</div><h3>Metrics Dashboard</h3><p>Today's collections by channel, with daily, weekly, monthly and yearly views.</p></div>
+<div class="c"><div class="i">💰</div><h3>Revenue, Expenses &amp; Profit</h3><p>Customisable expense heads and instant profitability reports.</p></div>
+<div class="c"><div class="i">🔖</div><h3>Specimen Tracking</h3><p>Barcode and QR tracking from collection to result.</p></div>
+<div class="c"><div class="i">✅</div><h3>Quality Control Records</h3><p>Detailed QC records to support accuracy and accreditation.</p></div>
+<div class="c"><div class="i">🧴</div><h3>Reagent Inventory</h3><p>Stock monitoring with expiry alerts so you never run short.</p></div>
+<div class="c"><div class="i">🎨</div><h3>Admin Controls</h3><p>Manage categories, tests, prices and the app's look and colour.</p></div>
+</div></div></section>
+
+<section class="alt" id="flow"><div class="w"><h2>How it works</h2><p class="sub">A simple, transparent workflow.</p>
+<div class="steps"><div><b>Register</b><br>Patient registered or chip card scanned.</div><div><b>Order &amp; Pay</b><br>Tests selected and payment received.</div><div><b>Process</b><br>Specimen tracked, results entered by department.</div><div><b>Report</b><br>Result sheet printed, history retained.</div><div><b>Analyse</b><br>Revenue, expenses and profit at a glance.</div></div></div></section>
+
+<section><div class="w"><h2>Built on a dependable stack</h2><p class="sub">Secure, fast and ready to grow with your laboratory.</p>
+<span class="pill">Node.js / Express backend</span><span class="pill">Lightweight HTML5 interface</span><span class="pill">Paystack gateway</span><span class="pill">Role-based access</span><span class="pill">Printable reports</span><span class="pill">Multi-department support</span></div></section>
+
+<section id="pricing"><div class="w"><h2>Simple pricing for every laboratory</h2><p class="sub">Choose the package that fits your size. All prices are one-off payments in US dollars.</p>
+<div class="pr">
+<div class="pc"><h3>Basic</h3><div class="p">$400</div><ul><li>Patient registration</li><li>Test, scan &amp; x-ray orders</li><li>Result sheets &amp; printing</li><li>Single department</li><li>Basic reports</li></ul><a class="btn" href="#contact">Request Demo</a></div>
+<div class="pc"><h3>Standard</h3><div class="p">$700</div><ul><li>Everything in Basic</li><li>Multiple departments &amp; role access</li><li>Paystack payments</li><li>Revenue, expense &amp; profit reports</li><li>Metrics dashboard</li></ul><a class="btn" href="#contact">Request Demo</a></div>
+<div class="pc f"><h3>Professional</h3><div class="p">$1,200</div><ul><li>Everything in Standard</li><li>Chip card integration for patients</li><li>Analyser integration module included (each connection quoted per device)</li><li>Specimen barcode/QR tracking</li><li>Quality control records</li><li>Reagent inventory &amp; expiry alerts</li></ul><a class="btn" href="#contact">Request Demo</a></div>
+<div class="pc"><h3>Enterprise</h3><div class="p">$2,500</div><ul><li>Everything in Professional, including analyser module and chip card integration</li><li>Each analyser connection quoted per device</li><li>Multi-branch support</li><li>Custom branding &amp; colours</li><li>Custom integrations</li><li>Priority support</li></ul><a class="btn" href="#contact">Request Demo</a></div>
+</div><p style="text-align:center;color:var(--mut);margin-top:22px;font-size:.92rem">Prices are one-off and exclude installation, configuration and training, which DELAF quotes separately. Connecting each analyser is also quoted separately after we assess its make, model and protocol.</p></div></section>
+
+<section id="delaf"><div class="w"><div class="d"><h2>Marketed &amp; implemented by DELAF</h2>
+<p>DELAF Systems Company designs, deploys and supports software solutions for healthcare, aviation, government and enterprise. We handle LMSPro end to end: requirements, customisation, installation, staff training and ongoing support, with Nigerian ownership, data sovereignty and transparent workflows.</p>
+<p><b>Our promise:</b> a system tailored to your laboratory, delivered on time and supported after go-live.</p></div></div></section>
+
+<section id="offices"><div class="w"><h2>Our offices</h2><p class="sub">DELAF serves laboratories across Nigeria from two locations.</p>
+<div class="g">
+<div class="c"><div class="i">📍</div><h3>Lagos Office</h3><p>31 Coker Street, Ifako Ogba, off College Road, Lagos, Nigeria<br>Tel: <a href="tel:08037197642">08037197642</a></p></div>
+<div class="c"><div class="i">📍</div><h3>Abeokuta Office</h3><p>Plot 3/5 Olafimihan Street, Obantoko, Abeokuta, behind Fajol Hotel, Ogun State, Nigeria<br>Tel: <a href="tel:08027960533">08027960533</a></p></div>
+</div></div></section>
+
+<section class="alt" id="contact"><div class="w" style="text-align:center"><h2>Request a live demo</h2><p class="sub">Tell us about your laboratory and DELAF will arrange a demonstration of LMSPro 1.0.</p>
+<div class="fm" id="demoForm">
+<label>Full name<input id="fn" placeholder="Your name"></label>
+<label>Laboratory / organisation<input id="lb" placeholder="Laboratory name"></label>
+<label>Phone number<input id="ph" type="tel" placeholder="080..."></label>
+<label>Email<input id="em" type="email" placeholder="you@example.com"></label>
+<label>Package of interest<select id="pk"><option>Basic ($400)</option><option>Standard ($700)</option><option selected>Professional ($1,200)</option><option>Enterprise ($2,500)</option><option>Not sure yet</option></select></label>
+<label>Message<textarea id="ms" rows="3" placeholder="Anything we should know?"></textarea></label>
+<button class="btn" type="button" id="send">Send Demo Request</button>
+<small id="note" style="color:var(--mut);text-align:center">This opens your email app with the request ready to send to DELAF.</small>
+</div>
+<div class="ct">Or call: <a href="tel:08037197642">08037197642</a><a href="tel:08027960533">08027960533</a></div></div></section>
+<footer>© 2026 DELAF Systems Company. LMSPro 1.0 is a DELAF product.<br>Tel: 08037197642, 08027960533 · delafsolutions@gmail.com</footer>
+<script>
+document.getElementById('send').onclick=function(){
+var g=function(i){return document.getElementById(i).value.trim()};
+if(!g('fn')||(!g('ph')&&!g('em'))){document.getElementById('note').textContent='Please enter your name and a phone number or email.';return}
+var b='Name: '+g('fn')+'\nLaboratory: '+g('lb')+'\nPhone: '+g('ph')+'\nEmail: '+g('em')+'\nPackage: '+g('pk')+'\n\nMessage:\n'+g('ms');
+window.location.href='mailto:delafsolutions@gmail.com?subject='+encodeURIComponent('LMSPro 1.0 Demo Request - '+g('fn'))+'&body='+encodeURIComponent(b);
+};
+</script>
+</body></html>
